@@ -1,0 +1,37 @@
+[WARNING][1;31m Indexing parameters (-k, -w or -H) overridden by parameters used in the prebuilt index.[0m
+[M::main::25.440*1.02] loaded/built the index for 194 target sequence(s)
+[M::mm_mapopt_update::27.419*1.02] mid_occ = 706
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 194
+[M::mm_idx_stat::28.375*1.02] distinct minimizers: 100159079 (38.75% are singletons); average occurrences: 5.545; average spacing: 5.581; total length: 3099750718
+[M::worker_pipeline::508.394*7.47] mapped 424018 sequences
+[M::worker_pipeline::1037.770*7.43] mapped 422929 sequences
+[M::worker_pipeline::1544.611*7.64] mapped 424206 sequences
+[M::worker_pipeline::2036.040*7.73] mapped 423013 sequences
+[M::worker_pipeline::2508.013*7.79] mapped 422403 sequences
+[M::worker_pipeline::2711.935*7.80] mapped 180936 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x splice -t 8 -c GRCh38.mmi SGNexRep1.fastq.gz
+[M::main] Real time: 2713.660 sec; CPU: 21161.092 sec; Peak RSS: 13.930 GB
+	Command being timed: "minimap2 -x splice -t 8 -c GRCh38.mmi SGNexRep1.fastq.gz"
+	User time (seconds): 21021.54
+	System time (seconds): 140.01
+	Percent of CPU this job got: 779%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 45:14.12
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 14606300
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 34
+	Minor (reclaiming a frame) page faults: 13866665
+	Voluntary context switches: 21383
+	Involuntary context switches: 15983
+	Swaps: 0
+	File system inputs: 19966408
+	File system outputs: 2526568
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,32 @@
+[WARNING][1;31m Indexing parameters (-k, -w or -H) overridden by parameters used in the prebuilt index.[0m
+[M::main::19.893*0.93] loaded/built the index for 194 target sequence(s)
+[M::mm_mapopt_update::23.089*0.90] mid_occ = 706
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 194
+[M::mm_idx_stat::23.757*0.90] distinct minimizers: 100159079 (38.75% are singletons); average occurrences: 5.545; average spacing: 5.581; total length: 3099750718
+[M::worker_pipeline::161.293*2.63] mapped 17745 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x splice -c GRCh38.mmi ONT_fus_sim_95err.fastq.gz
+[M::main] Real time: 162.624 sec; CPU: 425.059 sec; Peak RSS: 8.894 GB
+	Command being timed: "minimap2 -x splice -c GRCh38.mmi ONT_fus_sim_95err.fastq.gz"
+	User time (seconds): 403.56
+	System time (seconds): 21.88
+	Percent of CPU this job got: 261%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:42.99
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 9326368
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 18
+	Minor (reclaiming a frame) page faults: 2517258
+	Voluntary context switches: 31612
+	Involuntary context switches: 676
+	Swaps: 0
+	File system inputs: 6771960
+	File system outputs: 27896
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

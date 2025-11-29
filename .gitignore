@@ -1,0 +1,19 @@
+# ignore large files
+*.bam
+*.sam
+*.fastq
+*.fastq.gz
+*.paf
+*.mmi
+*.fa
+*.fna
+*.fasta
+*.bed
+*.gtf
+*.log.tmp
+
+# ignore conda env directories
+conda/
+env/
+venv/
+

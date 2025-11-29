@@ -1,0 +1,26 @@
+Normal reads: 4143
+Homologous chimeric reads: 39
+Fusion candidate chimeric reads: 12825
+	Command being timed: "genion -i ONT_fus_sim_90err.fastq.gz --gtf Homo_sapiens.GRCh38.115.gtf --gpaf ONT90.paf -s cdna.selfalign.tsv -d genomicSuperDups.txt -o ONT90_genion.tsv"
+	User time (seconds): 92.52
+	System time (seconds): 17.67
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:49.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3257524
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 44
+	Minor (reclaiming a frame) page faults: 1132943
+	Voluntary context switches: 73
+	Involuntary context switches: 241
+	Swaps: 0
+	File system inputs: 6570336
+	File system outputs: 2456
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
