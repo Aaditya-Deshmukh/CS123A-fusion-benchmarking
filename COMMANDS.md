@@ -12,6 +12,7 @@ for mapping, fusion detection, and performance measurement.
   > SGNexRep1.sam \
   2> logs/minimap2/SGNexRep1_minimap.log
 
+****## LongGf Example****
 /usr/bin/time -v LongGF \
   SGNexRep1.sorted.bam \
   gencode.v22.annotation.gtf \
