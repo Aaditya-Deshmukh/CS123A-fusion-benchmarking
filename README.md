@@ -2,19 +2,25 @@
 
 This repository contains my final project for CS123A, benchmarking two gene fusion
 detection tools (LongGF and Genion) on multiple long-read sequencing datasets using
-mapping via minimap2 and timing/memory profiling via `/usr/bin/time -v`.
+mapping via minimap2 and timing/memory profiling.
 
 ---
 
 ## Repository Structure
 
-logs/
-minimap2/
-longgf/
-genion/
+**logs** : Contains all the time logs for the running times of the various datasets
 
-results/
-tsvs/
+>_minimap2_: Contains the time logs for all minimap2 commands
+
+>_longgf_: Contains the time logs for all longGF commands
+
+>_genion_: Contains all the time logs for all genion commands
+
+**results** : Contains all the final .tsv files with the found fusions through either longGF or genion
+
+
+
+
 
 COMMANDS.md → contains the actual commands I ran
 README.md → description of the project
@@ -35,7 +41,7 @@ README.md → description of the project
 
 - SGNexRep1
 - SGNexRep2
-- ONT simulated datasets (75 / 80 / 85 / 90 / 95)
+- ONT simulated error datasets (75 / 80 / 85 / 90 / 95)
 
 ---
 
@@ -61,7 +67,7 @@ The complete list of commands used for minimap2, LongGF, and Genion can be found
 
 ---
 
-## Author
+## Authors
 
 Aaditya Deshmukh, Sharon Mathys, Thuy-Du Nguyen, Natasha Prabhoo 
 San Jose State University 
