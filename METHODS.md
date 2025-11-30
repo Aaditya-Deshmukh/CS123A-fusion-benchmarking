@@ -41,20 +41,6 @@ Two Environments were created:
 
  ---
 
-## 2.1 Installing LongGF (C++ Source Build)
-
-LongGF is implemented in C++ and was downloaded from its github page:
-
-```bash
-git clone https://github.com/WGLab/LongGF.git
-cd LongGF
-make
-```
-This required the system to have:
-- `gcc`/`g++`
-- `make`
-
-
 
 ## 2.1 Installing minimap2 and samtools (conda)
 
@@ -180,7 +166,7 @@ For **SGNex datasets (GRCh38)**:
     > SGNexRep1.sam \
     2> logs/minimap2/SGNexRep1_minimap.log
 ```
-For **ONT datasets(hg38)**
+For **ONT datasets(hg38)**:
 ```bash
 /usr/bin/time -v minimap2 -ax splice hg38.mmi ONT75.fastq.gz \
     > ONT75.sam \
@@ -190,9 +176,7 @@ For **ONT datasets(hg38)**
 ## 4.2 Converting SAM -> BAM
 
 ```bash
-/usr/bin/time -v minimap2 -ax splice hg38.mmi ONT75.fastq.gz \
-    > ONT75.sam \
-    2> logs/minimap2/ONT75_minimap.log
+samtools view -bS dataset.sam > dataset.bam
 ```
 
 ## 4.3 Name-sorting BAM for LongGF
@@ -205,7 +189,7 @@ This is required for LongGF
 
 ## 4.4 Running LongGF
 
-For SGNex datasets:
+For **SGNex datasets (GRCh38)**:
 
 ```bash
 /usr/bin/time -v LongGF \
@@ -216,7 +200,7 @@ For SGNex datasets:
     2> logs/longgf/SGNexRep1_longgf.log
 ```
 
-For ONT datasets:
+For **ONT datasets(hg38)**:
 
 ```bash
 /usr/bin/time -v LongGF \
@@ -233,7 +217,7 @@ Genion uses FASTQ + PAF files
 
 ## 5.1 Mapping FASTQ -> PAF using minimap2
 
-For SGNex datasets:
+For **SGNex datasets (GRCh38)**:
 
 ```bash
 /usr/bin/time -v minimap2 -x splice -c GRCh38.mmi SGNexRep1.fastq.gz \
@@ -241,7 +225,7 @@ For SGNex datasets:
     2> logs/minimap2/SGNexRep1_minimap_paf.log
 ```
 
-For ONT datasets:
+For **ONT datasets(hg38)**:
 
 ```bash
 /usr/bin/time -v minimap2 -x splice -c hg38.mmi ONT75.fastq.gz \
@@ -251,7 +235,7 @@ For ONT datasets:
 
 ## 5.2 Running Genion
 
-For SGNex datasets:
+For **SGNex datasets (GRCh38)**
 
 ```bash
 /usr/bin/time -v genion \
@@ -264,7 +248,7 @@ For SGNex datasets:
     2> logs/genion/SGNexRep1_genion.log
 ```
 
-For ONT datasets:
+For **ONT datasets(hg38)**:
 
 ```bash
 /usr/bin/time -v genion \
