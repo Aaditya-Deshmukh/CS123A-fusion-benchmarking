@@ -326,9 +326,9 @@ All resulting TSV files are located in:
 
 Examples include:
 
-- `SGNexRep1_fusions.tsv': LongGF tsv file
-- `SGNexRep1_genion.tsv': Genion tsv file
-- `ONT75_SumGF.tsv': LongGF tsv file
+- `SGNexRep1_fusions.tsv`: LongGF tsv file
+- `SGNexRep1_genion.tsv`: Genion tsv file
+- `ONT75_SumGF.tsv`: LongGF tsv file
 - `ONT75_genion.tsv`: Genion tsv file
 
 
