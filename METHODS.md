@@ -128,3 +128,188 @@ make
 This produced a direct executable within the environment, wihch enabled direct execution using:
 
 `LongGF <args>`
+
+# 3. Reference Genome Usage and Annotation Differences
+
+Two different genome builds and GTF annotation files were used depending on dataset type.
+
+## 3.1 SGNexRep datasets (biological datasets)
+
+- Genome index: **GRCh38.mmi**
+- Annotation file: **Homo_sapiens.GRCh38.115.gtf** (Ensembl)
+- Used for: SGNexRep1, SGNexRep2
+
+These datasets ran correctly with Ensembl-based annotations mapping to GRCh38.
+
+---
+
+## 3.2 ONT simulated datasets (synthetic datasets: 75/80/85/90/95)
+
+- Genome index: **hg38.mmi**
+- Annotation file: **gencode.v22.annotation.gtf** (GENCODE)
+- Used for: ONT75, ONT80, ONT85, ONT90, ONT95
+
+Simulated reads required GENCODE formatting and hg38-based genome indexing.
+
+---
+
+## 3.3 Consequence of incorrect pairing
+
+Using mismatched genome/annotation pairs resulted in:
+
+- zero fusion predictions
+- unmapped read IDs  
+- transcript ID mismatches  
+- incorrect chromosome positions  
+- failures in fusion detection
+
+This required careful dataset-specific reference selection.
+
+---
+
+# 4. Full LongGF Execution Workflow (End-to-End)
+
+LongGF uses BAM alignment files and requires name-sorted BAM input.
+
+## 4.1 Mapping FASTQ → SAM using minimap2
+
+For **SGNex datasets (GRCh38)**:
+
+```bash
+/usr/bin/time -v minimap2 -ax splice GRCh38.mmi SGNexRep1.fastq.gz \
+    > SGNexRep1.sam \
+    2> logs/minimap2/SGNexRep1_minimap.log
+```
+For **ONT datasets(hg38)**
+```bash
+/usr/bin/time -v minimap2 -ax splice hg38.mmi ONT75.fastq.gz \
+    > ONT75.sam \
+    2> logs/minimap2/ONT75_minimap.log
+```
+
+## 4.2 Converting SAM -> BAM
+
+```bash
+/usr/bin/time -v minimap2 -ax splice hg38.mmi ONT75.fastq.gz \
+    > ONT75.sam \
+    2> logs/minimap2/ONT75_minimap.log
+```
+
+## 4.3 Name-sorting BAM for LongGF
+
+```bash
+samtools sort -n dataset.bam -o dataset.sorted.bam
+```
+
+This is required for LongGF
+
+## 4.4 Running LongGF
+
+For SGNex datasets:
+
+```bash
+/usr/bin/time -v LongGF \
+    SGNexRep1.sorted.bam \
+    Homo_sapiens.GRCh38.115.gtf \
+    100 50 100 0 0 2 0 \
+    > results/tsvs/SGNexRep1_longgf.tsv \
+    2> logs/longgf/SGNexRep1_longgf.log
+```
+
+For ONT datasets:
+
+```bash
+/usr/bin/time -v LongGF \
+    ONT75.sorted.bam \
+    gencode.v22.annotation.gtf \
+    100 50 100 0 0 2 0 \
+    > results/tsvs/ONT75_longgf.tsv \
+    2> logs/longgf/ONT75_longgf.log
+```
+
+# 5 Full Genion Execution Workflow (End-to-End)
+
+Genion uses FASTQ + PAF files
+
+## 5.1 Mapping FASTQ -> PAF using minimap2
+
+For SGNex datasets:
+
+```bash
+/usr/bin/time -v minimap2 -x splice -c GRCh38.mmi SGNexRep1.fastq.gz \
+    > SGNexRep1.paf \
+    2> logs/minimap2/SGNexRep1_minimap_paf.log
+```
+
+For ONT datasets:
+
+```bash
+/usr/bin/time -v minimap2 -x splice -c hg38.mmi ONT75.fastq.gz \
+    > ONT75.paf \
+    2> logs/minimap2/ONT75_minimap_paf.log
+```
+
+## 5.2 Running Genion
+
+For SGNex datasets:
+
+```bash
+/usr/bin/time -v genion \
+    -i SGNexRep1.fastq.gz \
+    --gtf Homo_sapiens.GRCh38.115.gtf \
+    --gpaf SGNexRep1.paf \
+    -s cdna.selfalign.tsv \
+    -d genomicSuperDups.txt \
+    -o results/tsvs/SGNexRep1_genion.tsv \
+    2> logs/genion/SGNexRep1_genion.log
+```
+
+For ONT datasets:
+
+```bash
+/usr/bin/time -v genion \
+    -i ONT75.fastq.gz \
+    --gtf gencode.v22.annotation.gtf \
+    --gpaf ONT75.paf \
+    -s cdna.selfalign.tsv \
+    -d genomicSuperDups.txt \
+    -o results/tsvs/ONT75_genion.tsv \
+    2> logs/genion/ONT75_genion.log
+```
+
+# 6. Timing and Resource Profiling
+
+Every execution, FASTQ mapping, SAM/BAM converting, sorting, and fusion detection was tracked using: 
+`/usr/bin/time -v <command>`
+
+This allowed the collection of:
+- Wall-clock time
+- Maximum RAM
+- %CPU utilization
+- I/O statistics
+Each output was stored in the appropriate:
+- logs/minimap2/
+- logs/longgf/
+- logs/genion/
+
+# 7. Example of Full Pipeline for One Dataset (SGNexRep1)
+
+```bash
+conda activate fusionenv
+/usr/bin/time -v minimap2 -ax splice GRCh38.mmi SGNexRep1.fastq.gz > SGNexRep1.sam 2> logs/minimap2/SGNexRep1_minimap.log
+samtools view -bS SGNexRep1.sam > SGNexRep1.bam
+samtools sort -n SGNexRep1.bam -o SGNexRep1.sorted.bam
+/usr/bin/time -v LongGF SGNexRep1.sorted.bam Homo_sapiens.GRCh38.115.gtf 100 50 100 0 0 2 0 > results/tsvs/SGNexRep1_longgf.tsv 2> logs/longgf/SGNexRep1_longgf.log
+
+conda activate genionenv
+/usr/bin/time -v minimap2 -x splice -c GRCh38.mmi SGNexRep1.fastq.gz > SGNexRep1.paf 2> logs/minimap2/SGNexRep1_minimap_paf.log
+/usr/bin/time -v genion -i SGNexRep1.fastq.gz --gtf Homo_sapiens.GRCh38.115.gtf --gpaf SGNexRep1.paf -s cdna.selfalign.tsv -d genomicSuperDups.txt -o results/tsvs/SGNexRep1_genion.tsv 2> logs/genion/SGNexRep1_genion.log
+```
+
+# 8. Summary of LongGF vs Genion Input Requirements
+
+| Tool    | Required Input   | Genome Used        | Annotation Used              |
+|----------|------------------|--------------------|------------------------------|
+| LongGF   | Name-sorted BAM  | GRCh38 or hg38     | Homo_sapiens.GRCh38.115.gtf or gencode.v22.annotation.gtf |
+| Genion   | FASTQ + PAF      | GRCh38 or hg38     | Homo_sapiens.GRCh38.115.gtf or gencode.v22.annotation.gtf |
+
