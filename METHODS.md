@@ -1,6 +1,6 @@
-# Exact Commands Used in This Project
+# Exact Methods Used in This Project
 
-This document contains the actual commands I ran step-by-step during the project
+This document contains the methods I used and the commands I ran step-by-step during the project
 for mapping, fusion detection, and performance measurement.
 
 ---
