@@ -283,11 +283,14 @@ Every execution, FASTQ mapping, SAM/BAM converting, sorting, and fusion detectio
 `/usr/bin/time -v <command>`
 
 This allowed the collection of:
+
 - Wall-clock time
 - Maximum RAM
 - %CPU utilization
 - I/O statistics
+  
 Each output was stored in the appropriate:
+
 - logs/minimap2/
 - logs/longgf/
 - logs/genion/
