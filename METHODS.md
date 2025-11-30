@@ -326,4 +326,32 @@ Anyone reviewing the repository can directly inspect:
 
 These result files form the basis for evaluating fusion detection accuracy and comparing performance between LongGF and Genion.
 
+# 10. Hardware Specifications of Computation Environment
+
+All gene-fusion analyses were executed on a local laptop computer with the following specifications:
+
+**Host Machine (Windows):**
+- Device name: ALaptop
+- CPU: AMD Ryzen 7 PRO 7840U  
+  - 8 cores / 16 threads  
+  - Base clock: 3.30 GHz  
+  - Integrated GPU: Radeon 780M (not used for computation)
+- Installed RAM: 32 GB (30.7 GB usable)
+- System type: 64-bit OS, x64-based processor
+- Storage: SSD (NVMe) — supports fast read/write for BAM/PAF processing
+
+This hardware allowed both LongGF and Genion to be executed efficiently on-device without requiring an HPC cluster or remote compute instance.
+
+**Linux Runtime Environment (inside WSL2):**
+- WSL2 virtualized Linux kernel
+- Ubuntu (inside WSL)
+- Shared memory and CPU resources with Windows host
+- Full support for `/usr/bin/time -v` for resource profiling
+
+Notes on performance:
+- Multithreading allowed minimap2 to efficiently align large FASTQ datasets
+- Sufficient RAM (32GB) prevented memory starvation during large-file operations
+- SSD ensured rapid sorting and indexing of BAM files
+
+No GPU acceleration was used, all workloads were executed on CPU.
 
