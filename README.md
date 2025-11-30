@@ -22,7 +22,7 @@ mapping via minimap2 and timing/memory profiling.
 
 
 
-COMMANDS.md → contains the actual commands I ran
+METHODS.md → contains the methods/commands used
 README.md → description of the project
 ---
 
@@ -63,7 +63,7 @@ README.md → description of the project
 
 The complete list of commands used for minimap2, LongGF, and Genion can be found in:
 
-- **COMMANDS.md**
+- **METHODS.md**
 
 ---
 
