@@ -11,7 +11,7 @@ for mapping, fusion detection, and performance measurement.
 /usr/bin/time -v minimap2 -ax splice hg38.mmi SGNexRep1.fastq.gz \
   > SGNexRep1.sam \
   2> logs/minimap2/SGNexRep1_minimap.log
----
+
 ```
 ## LongGf Example
 
