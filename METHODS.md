@@ -316,3 +316,30 @@ conda activate genionenv
 | LongGF   | Name-sorted BAM  | GRCh38 or hg38     | Homo_sapiens.GRCh38.115.gtf or gencode.v22.annotation.gtf |
 | Genion   | FASTQ + PAF      | GRCh38 or hg38     | Homo_sapiens.GRCh38.115.gtf or gencode.v22.annotation.gtf |
 
+# 9. Fusion Result Output Files (TSV)
+
+Each fusion detection run produced a TSV output file containing the list of gene fusion predictions detected in that dataset. These TSVs represent the final outputs of LongGF and Genion and were collected and are included in this repository for reference and evaluation.
+
+All resulting TSV files are located in:
+
+**results/tsvs/**
+
+Examples include:
+
+- `SGNexRep1_fusions.tsv': LongGF tsv file
+- `SGNexRep1_genion.tsv': Genion tsv file
+- `ONT75_SumGF.tsv': LongGF tsv file
+- `ONT75_genion.tsv`: Genion tsv file
+
+
+The TSV files contain the fusion predictions generated during the analysis for each dataset. Since the output formats can vary between tools and datasets (particularly between biological SGNex samples and simulated ONT reads), the TSV files are provided “as produced” by the tools or lightly cleaned for readability.
+
+Anyone reviewing the repository can directly inspect:
+
+- what fusion events were detected  
+- how many were found per dataset  
+- which ones were found by both tools vs. only one tool  
+
+These result files form the basis for evaluating fusion detection accuracy and comparing performance between LongGF and Genion.
+
+
