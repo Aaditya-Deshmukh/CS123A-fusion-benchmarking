@@ -1,6 +1,6 @@
 # CS123A Long-Read Gene Fusion Benchmarking
 
-This repository contains my final project for CS123A, benchmarking two gene fusion
+This repository contains our final project for CS123A, benchmarking two gene fusion
 detection tools (LongGF and Genion) on multiple long-read sequencing datasets using
 mapping via minimap2 and timing/memory profiling.
 
