@@ -53,7 +53,6 @@ S --> W[Collect TSV outputs and time logs]
 
 V --> W
 
-W --> X[Compare LongGF vs Genion]
+W --> X[End]
 
-X --> Y[End]
 ```
