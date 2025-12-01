@@ -49,7 +49,7 @@ T --> U[FASTQ → PAF with minimap2 -x splice -c]
 
 U --> V[Run Genion — output TSV]
 
-S --> W[Collect TSV outputs in results/tsvs/]
+S --> W[Collect TSV outputs and time logs]
 
 V --> W
 
